@@ -32,5 +32,7 @@ public class PlayerController : MonoBehaviour
     _rigidbody2d.linearVelocity = new Vector2(_rigidbody2d.linearVelocity.x, JumpForce);
     isJumpPressed = false;
    }
+
  }
+
  }
