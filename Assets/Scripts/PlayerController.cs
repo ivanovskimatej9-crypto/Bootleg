@@ -4,13 +4,16 @@ public class PlayerController : MonoBehaviour
 {
   public float moveSpeed;
   public float JumpForce;
+  private SpriteRenderer sr;
   private Rigidbody2D _rigidbody2d;
   private float horizontalInput;
   private bool isJumpPressed;
+  private float h;
 
   private void Awake()
   {
     _rigidbody2d = GetComponent<Rigidbody2D>();
+    sr = GetComponent<SpriteRenderer>();
   }
 
   private void Update()
@@ -21,6 +24,15 @@ public class PlayerController : MonoBehaviour
       isJumpPressed = true;
     }
     Debug.Log("Horizontal Input: " + horizontalInput);
+    h = Input.GetAxis("Horizontal");
+    if (h < 0)
+    {
+      sr.flipX = false;
+    }
+    else if (h > 0)
+    {
+      sr.flipX = true;
+    }
   }
 
   private void FixedUpdate()
@@ -31,6 +43,7 @@ public class PlayerController : MonoBehaviour
    {
     _rigidbody2d.linearVelocity = new Vector2(_rigidbody2d.linearVelocity.x, JumpForce);
     isJumpPressed = false;
+    
    }
 
  }
